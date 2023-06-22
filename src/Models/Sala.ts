@@ -9,10 +9,8 @@ export class Sala{
     }
 
     CadeirasAvainable() {
-        for(let i = 0; i < this.cadeiras; i++) {
-            let cade = new Cadeiras(i)
-            cade.criarCadeira()
-            cade.opa()
-        }
+       let cad = new Cadeiras(this.cadeiras)
+        cad.montarCadeira()
+
     }
 }

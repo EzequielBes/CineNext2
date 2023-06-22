@@ -1,9 +1,11 @@
 'use client'
 
+import { Sala } from "@/Models/Sala";
 import { movieCatalogo } from "@/movies/catalogo";
 import { Box, Button, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { PiPopcorn } from "react-icons/pi";
+
 
 export default function IngressoComprar() {
 
@@ -25,6 +27,12 @@ export default function IngressoComprar() {
     }
     
    }
+   function criarMenu() {
+    let mod = new Sala(5)
+    mod.CadeirasAvainable()
+    console.log(mod)
+
+   }
 
     return (
         <Box bg={"gray.800"} height={"100vh"}>
@@ -38,6 +46,7 @@ export default function IngressoComprar() {
                     </form>
                     {isOnSale == true && <Box color={"green"}>Comprar ingresso para <Button>{formValue}</Button> </Box>}
                 </Box>
+                <Button onClick={criarMenu}></Button>
             </Box>
         </Box>
     )
