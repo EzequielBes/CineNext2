@@ -12,7 +12,7 @@ export function Header() {
       </div>
       <nav>
         <ul>
-          <Link href="comprarIngresso" className='text-red-900'>Comprar ingresso</Link>
+          <Link href="/ingressos/comprarIngresso" className='text-red-900'>Comprar ingresso</Link>
         </ul>
       </nav>
     </div>

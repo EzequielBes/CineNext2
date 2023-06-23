@@ -8,9 +8,10 @@ export class Sala{
         this.numeroSalas = numeroSalas
     }
 
-    CadeirasAvainable() {
+    CadeirasAvainable(num:number) {
        let cad = new Cadeiras(this.cadeiras)
         cad.montarCadeira()
+        return cad.comprarLugar(num)
 
     }
 }

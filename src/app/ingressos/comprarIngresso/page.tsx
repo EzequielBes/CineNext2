@@ -3,6 +3,7 @@
 import { Sala } from "@/Models/Sala";
 import { movieCatalogo } from "@/movies/catalogo";
 import { Box, Button, FormLabel, Input, Text } from "@chakra-ui/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PiPopcorn } from "react-icons/pi";
 
@@ -12,6 +13,7 @@ export default function IngressoComprar() {
    
    const [formValue, setFormValue] = useState("")
     const [isOnSale, setOnSale] = useState(Boolean)
+    const [idmovie, setIdMovie] = useState(0)
    
 
     function muda(event:any) {
@@ -22,7 +24,10 @@ export default function IngressoComprar() {
     event.preventDefault();
     
     let moviesr = movieCatalogo.filter(movie => movie.name === formValue)
+    
     if(moviesr.length !== 0){
+        setIdMovie(moviesr[0].sala)
+        
         setOnSale(true)
     }
     
@@ -44,7 +49,7 @@ export default function IngressoComprar() {
                         <Input type="text" name="filme" placeholder="Digite o nome do filme" onChange={muda} color={"whiteAlpha.600"} />
                         
                     </form>
-                    {isOnSale == true && <Box color={"green"}>Comprar ingresso para <Button>{formValue}</Button> </Box>}
+                    {isOnSale == true && <Box color={"green"}>Comprar ingresso para <Link href={`/ingressos/comprarIngresso/${idmovie}`}>{formValue}</Link> </Box>}
                 </Box>
                 <Button onClick={criarMenu}></Button>
             </Box>
