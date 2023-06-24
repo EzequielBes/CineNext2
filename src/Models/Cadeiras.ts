@@ -1,21 +1,23 @@
-type cadeiras ={
-    array: {
-        id: number,
-        isOcuped: boolean
-    }
-}
+import { ComprarLugar } from "./ComprarLugar"
+import {Cadeiras as Cad} from '../types/cadeiras'
+
+
 
 export class Cadeiras {
     id
-    cadeirasT: cadeiras[] = []
+    cadeirasT: Cad[] = []
+    
     constructor(cadeiras:number) {
         this.id = cadeiras
     }
     montarCadeira() {
         for(let i = 0; i < this.id; i++) {
-            this.cadeirasT.push({id: i, osOcuped: false})
+            this.cadeirasT.push({id: i, isOcuped: false})
         }
-        console.log(this.cadeirasT)
+        
+        return(this.cadeirasT)
+        
     }
+    
    
 }
