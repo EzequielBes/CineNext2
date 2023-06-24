@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import {PiPopcorn} from 'react-icons/pi'
+import IngressoComprar from '../sala/inputMovies'
+import { List } from '@chakra-ui/react'
 
 export function Header() {
   return (
@@ -10,11 +12,12 @@ export function Header() {
         <PiPopcorn className='text-yellow-500 text-4xl ' />
         <h1 className="font-poppins text-3xl">CineNext</h1>
       </div>
-      <nav>
-        <ul>
-          <Link href="/ingressos/comprarIngresso" className='text-red-900'>Comprar ingresso</Link>
-        </ul>
-      </nav>
+      <ul>
+        <li>
+          <IngressoComprar/>
+          
+        </li>
+      </ul>
     </div>
   </header>
   )

@@ -1,5 +1,6 @@
 
 
+import { CadeiraProvider } from '@/context/ticketContext';
 import '../styles/global.css'
 import { Providers } from "./providers";
 
@@ -28,9 +29,11 @@ export default function RootLayout({
       
         
           <body className={`${inter.className} ${poppins.className}`}>
+            <CadeiraProvider>
             <Providers>
               {children}
             </Providers>
+            </CadeiraProvider>
           </body>
         
       
