@@ -15,11 +15,9 @@ export class Cadeiras {
             this.cadeirasT.push({id: i, isOcuped: false})
         }
         
-    }
-    comprarLugar(num:number) {
-        let nova = new ComprarLugar(this.cadeirasT)
-        nova.isAvainable(num)
         return(this.cadeirasT)
+        
     }
+    
    
 }

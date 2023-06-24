@@ -1,39 +1,74 @@
-'use client'
+"use client";
 
-import { Sala } from "@/Models/Sala"
-import { Cadeiras } from "@/types/cadeiras"
-import { Box, Flex, Grid, GridItem, Icon } from "@chakra-ui/react"
-import { useEffect, useState } from "react"
-import {TbArmchair} from 'react-icons/tb'
+import { Sala } from "@/Models/Sala";
+import { Cadeiras } from "@/types/cadeiras";
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+  Icon,
+  color,
+} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { TbArmchair } from "react-icons/tb";
+import { useColorMode } from "@chakra-ui/react";
+import { ComprarLugar } from "@/Models/ComprarLugar";
+import { useMyContext } from "@/context/ticketContext";
 
 export function SalaCinema() {
-    const [cadeirasOnline, setCadeiras] = useState<any[]>()
+  const [cadeirasOnline, setCadeiras] = useState<Cadeiras[]>([]);
+ 
+ const {indicet, setIndice} = useMyContext()
+  
 
+  const { colorMode } = useColorMode();
+
+  const cadeirasSala = () => {
+    const createSala = new Sala(5);
+    const cadeiras = createSala.CadeirasAvainable();
+    setCadeiras(cadeiras)
     
-    
-    const cadeirasSala = () => {
-        const createSala = new Sala(5)
-        const cadeiras = createSala.CadeirasAvainable()
-        setCadeiras(cadeiras)
-        console.log(cadeirasOnline)
-        
-    }
-    useEffect(()=>{
-        cadeirasSala()
-    },[])
+    return createSala;
+  };
+  function clijogar(num: number) {
+    const lugares = new ComprarLugar(cadeirasOnline);
+    setIndice({indice: num})
+    const newLugares = lugares.isAvainable(num);
+    setCadeiras([...newLugares])
+  }
 
-    return (
-        <Flex  >
-            <Box bg={'whiteAlpha.500'} height={'100vh'} width={'100%'} >
-            <Grid  templateColumns="repeat(5, 1fr)" templateRows="repeat(6, 1fr)" gap={6} > 
-                {cadeirasOnline?.map((cadeira, index) => (
-                    <GridItem key={index} colSpan={1} rowSpan={1} >
+  useEffect(() => {
+    cadeirasSala();
+  }, []);
 
-                        <Icon cursor={'pointer'} fontSize={25}><TbArmchair/></Icon>
-                    </GridItem>
-                ))}
-                </Grid>
-            </Box>
-        </Flex>
-    )
+  return (
+    <Flex>
+      <Box bg={"#49416D"} height={"60vh"} width={"100%"} display={'flex'} alignItems={'center'} justifyContent={'center'}>
+        <Grid
+          templateColumns="repeat(5, 1fr)"
+          templateRows="repeat(6, 1fr)"
+          gap={6}
+        >
+          {cadeirasOnline.map((cadeira, index) => (
+            <GridItem key={index} colSpan={1} rowSpan={1}>
+              <Button onClick={() => clijogar(index)}>
+                <Icon
+                  cursor={"pointer"}
+                  fontSize={25}
+                  style={{
+                    color: cadeira.isOcuped === true ? "orange" : "#6f95ff",
+                  }}
+                >
+                  
+                  <TbArmchair />
+                </Icon>
+              </Button>
+            </GridItem>
+          ))}
+        </Grid>
+      </Box>
+    </Flex>
+  );
 }

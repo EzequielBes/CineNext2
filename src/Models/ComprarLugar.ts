@@ -1,16 +1,13 @@
 import { Cadeiras } from "@/types/cadeiras"
 
 export class ComprarLugar{
-    lugares
-    constructor(lugares:Cadeiras[]) {
-        this.lugares = lugares
-    }
+    
+    constructor(public lugares:Cadeiras[]) {}
 
-    isAvainable(sell : number) {
-        let lugarSelecionado = this.lugares[sell]
-        lugarSelecionado.isOcuped == false ? lugarSelecionado.isOcuped = true : lugarSelecionado.isOcuped = false  
-        
+     isAvainable(sell : number) {  
+        let lugarSelecionado =  this.lugares[sell]
+        this.lugares[sell].isOcuped == false ? lugarSelecionado.isOcuped = true : lugarSelecionado.isOcuped = true
+        return this.lugares
     }
     
-
 }

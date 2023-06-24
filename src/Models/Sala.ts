@@ -3,15 +3,20 @@ import { Cadeiras } from "./Cadeiras";
 export class Sala{
     cadeiras = 30;
     numeroSalas
+    metodo = new Cadeiras(this.cadeiras)
 
     constructor(numeroSalas: number){
         this.numeroSalas = numeroSalas
     }
 
-    CadeirasAvainable(num:number) {
-       let cad = new Cadeiras(this.cadeiras)
-        cad.montarCadeira()
-        return cad.comprarLugar(num)
+    CadeirasAvainable() {
+       
+        //this.metodo.montarCadeira()
+        return this.metodo.montarCadeira()
 
+    }
+    CadeirasNovas(num:number) {
+        this.metodo.comprarLugar(num)
+        console.log(num)
     }
 }
