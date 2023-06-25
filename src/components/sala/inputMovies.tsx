@@ -5,7 +5,7 @@ import { movieCatalogo } from "@/movies/catalogo";
 import { Box, Button, FormLabel, Input, InputLeftAddon, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useState } from "react";
-
+import {buyTicket} from '../../linkRoutes/rotas'
 
 export default function Ingressos() {
   const [formValue, setFormValue] = useState("");
@@ -27,11 +27,7 @@ export default function Ingressos() {
       setOnSale(true);
     }
   }
-  function criarMenu() {
-    let mod = new Sala(5);
-    mod.CadeirasAvainable();
-    console.log(mod);
-  }
+  
 
   return (
     <Box>
@@ -51,7 +47,7 @@ export default function Ingressos() {
       {isOnSale == true && (
         <Box color={"green"} position={'absolute'}>
           Comprar ingresso para{" "}
-          <Link href={`/ingressos/comprarIngresso/${idmovie}`}>
+          <Link href={`${buyTicket}/${idmovie}`}>
             {formValue}
           </Link>{" "}
           

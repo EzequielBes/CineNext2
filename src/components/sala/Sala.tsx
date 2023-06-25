@@ -1,7 +1,7 @@
 "use client";
 
 import { Sala } from "@/Models/Sala";
-import { Cadeiras } from "@/types/cadeiras";
+import { Cadeiras } from "@/types/IChairs";
 import {
   Box,
   Button,
@@ -18,30 +18,39 @@ import { ComprarLugar } from "@/Models/ComprarLugar";
 import { useMyContext } from "@/context/ticketContext";
 
 export function SalaCinema() {
-  const [cadeirasOnline, setCadeiras] = useState<Cadeiras[]>([]);
- 
- const {indicet, setIndice} = useMyContext()
-  
+  const {salaCadeira, setSalaCadeira} = useMyContext()
+  const [cadeirasOnline, setCadeiras] = useState<Cadeiras[]| undefined>();
+  const {indicet, setIndice} = useMyContext()
+  const [historyCOmpras,setHistoryCompras] = useState<number[]>([])
 
-  const { colorMode } = useColorMode();
-
-  const cadeirasSala = () => {
+  const createMovieTheater = () => {
+    if(cadeirasOnline) return
     const createSala = new Sala(5);
-    const cadeiras = createSala.CadeirasAvainable();
-    setCadeiras(cadeiras)
-    
-    return createSala;
+    const chairs = createSala.CadeirasAvainable();
+    return salaCadeira??chairs
   };
-  function clijogar(num: number) {
-    const lugares = new ComprarLugar(cadeirasOnline);
-    setIndice({indice: num})
-    const newLugares = lugares.isAvainable(num);
+
+  function handleSelectChair(selected: number) {
+    if(!cadeirasOnline) return
+    let lugares = new ComprarLugar(cadeirasOnline);
+    setIndice({indice: selected + 1})
+    let newLugares = lugares.isAvainable(selected);
+    setHistoryCompras([...historyCOmpras,selected])
     setCadeiras([...newLugares])
   }
 
+  useEffect(()=>{
+    let cadeiras = cadeirasOnline ? [...cadeirasOnline] : []
+    for(let lugar=0; lugar<historyCOmpras.length -1; lugar++){
+      if(cadeiras.length>0)
+        cadeiras[historyCOmpras[lugar]].isOcuped = false
+    }
+    setSalaCadeira(cadeirasOnline)
+  }),[historyCOmpras]
+
   useEffect(() => {
-    cadeirasSala();
-  }, []);
+    setCadeiras(createMovieTheater())
+  }, [])
 
   return (
     <Flex>
@@ -51,14 +60,14 @@ export function SalaCinema() {
           templateRows="repeat(6, 1fr)"
           gap={6}
         >
-          {cadeirasOnline.map((cadeira, index) => (
+          {cadeirasOnline?.map((chair, index) => (
             <GridItem key={index} colSpan={1} rowSpan={1}>
-              <Button onClick={() => clijogar(index)}>
+              <Button onClick={() => handleSelectChair(index)}>
                 <Icon
                   cursor={"pointer"}
                   fontSize={25}
                   style={{
-                    color: cadeira.isOcuped === true ? "orange" : "#6f95ff",
+                    color: chair?.isOcuped === true ? "orange" : "#6f95ff",
                   }}
                 >
                   

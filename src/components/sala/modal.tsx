@@ -18,8 +18,8 @@ interface ITicketModal{
 }
 export const TicketModal: React.FC<ITicketModal> = ({ing}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
- 
+  const {salaCadeira, setSalaCadeira} = useMyContext()
+  
 
   return (
     <>
@@ -31,7 +31,7 @@ export const TicketModal: React.FC<ITicketModal> = ({ing}) => {
           <ModalHeader color={'white'}>Selecione sua cadeira</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <SalaCinema/>
+            <SalaCinema />
           </ModalBody>
           <ModalFooter>
             <Button  style={{

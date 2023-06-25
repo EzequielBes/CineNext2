@@ -1,5 +1,5 @@
 import { ComprarLugar } from "./ComprarLugar"
-import {Cadeiras as Cad} from '../types/cadeiras'
+import {Cadeiras as Cad} from '../types/IChairs'
 
 
 

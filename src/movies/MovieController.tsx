@@ -1,4 +1,5 @@
-import { Catalogo } from "@/types/catalogo";
+import { buyTicket } from "@/linkRoutes/rotas";
+import { Catalogo } from "@/types/Icatalog";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import Link from "next/link";
 interface movieInd extends Catalogo {
@@ -7,7 +8,7 @@ interface movieInd extends Catalogo {
 }
 export function Ageitafilme({ movies }: movieInd) {
   return (
-    <Link href={`ingressos/comprarIngresso/${movies.sala}`}>
+    <Link href={`${buyTicket}/${movies.sala}`}>
       <Flex
         flexDir={"column"}
         justify={"center"}
