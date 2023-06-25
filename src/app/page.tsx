@@ -1,5 +1,5 @@
 "use client";
-import { Conteudo } from "@/components/layout/conteudo";
+import { Conteudo } from "@/components/layout/homeCatalog";
 import { Header } from "../components/layout/header";
 import { Box, Button, Flex, Img } from "@chakra-ui/react";
 import { useMyContext } from "@/context/ticketContext";
@@ -25,7 +25,7 @@ export default function Home() {
             >
               <Conteudo />
             </Box>
-            <Button bg={'white'} >ddd</Button>
+            
           </Box>
           <Box height={"100vh"}>
               <Img width={"100vw"} height={"100vh"} 

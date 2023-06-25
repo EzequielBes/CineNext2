@@ -3,7 +3,7 @@ import {BiArrowBack} from 'react-icons/bi'
 import {  TicketModal } from "@/components/sala/modal"
 import IngressoAnos80 from "@/components/sala/ticketMovie"
 import { movieCatalogo } from "@/movies/catalogo"
-import { Catalogo } from "@/types/catalogo"
+import { Catalogo } from "@/types/Icatalog"
 import { Box, Button, Flex, Text } from "@chakra-ui/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -18,16 +18,15 @@ export default function Page({ params }: { params: { slug: string } }) {
   const getMovie = () => {
     let ok = movies.find(filme => filme.sala == parseInt(parametro))
     setMovie(ok)
-    console.log(ok)
+    
   }
   const {indicet, setIndice} = useMyContext()
+  setIndice
   useEffect(()=> {
     getMovie()
   },[])
   
-  const click = () => {
-    setmodal(true)
-  }
+ 
 
   return(
     <Box bg={'#49416D'}>
@@ -51,7 +50,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         
       </Flex>
       <Box w={'80%'} margin={'0 auto'} height={'100vh'}>
-      {indicet?.indice &&
+      {typeof indicet?.indice !== 'undefined' &&
         
         <IngressoAnos80 ing={movie?.price ?? 0} name={movie?.name ?? ''} />
       
