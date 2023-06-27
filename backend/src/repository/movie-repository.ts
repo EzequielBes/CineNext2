@@ -20,4 +20,20 @@ export default class MovieRepository implements IMovieRepository {
         await this.prisma.$disconnect()
         return movies
     }
+
+    async findByName(name:string): Promise<IMovie[]> {
+        const movies:IMovie[] = await this.prisma.$queryRawUnsafe<IMovie[]>(`SELECT * FROM Movie WHERE name LIKE '%${name}%'`)
+        await this.prisma.$disconnect()
+        return movies
+    }
+
+    async findById(id:number): Promise<IMovie | null> {
+        const movies:IMovie | null = await this.prisma.movie.findUnique({
+            where:{
+                id:id
+            }
+        })
+        await this.prisma.$disconnect()
+        return movies
+    }
 }
