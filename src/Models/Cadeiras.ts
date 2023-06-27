@@ -4,20 +4,15 @@ import {Cadeiras as Cad} from '../types/IChairs'
 
 
 export class Cadeiras {
-    id
     cadeirasT: Cad[] = []
     
-    constructor(cadeiras:number) {
-        this.id = cadeiras
-    }
+    constructor(readonly numberChair:number) {}
+
     montarCadeira() {
-        for(let i = 0; i < this.id; i++) {
+        for(let i = 0; i < this.numberChair; i++) {
             this.cadeirasT.push({id: i, isOcuped: false})
-        }
-        
-        return(this.cadeirasT)
-        
+        }        
+        return(this.cadeirasT)       
     }
-    
-   
+     
 }

@@ -6,23 +6,27 @@ import { Box, Button, FormLabel, Input, InputLeftAddon, Text } from "@chakra-ui/
 import Link from "next/link";
 import { useState } from "react";
 import {buyTicket} from '../../linkRoutes/rotas'
+import { getAllMovies, getMovieByName } from "@/movies/api";
+import { Catalogo } from "@/types/Icatalog";
 
 export default function Ingressos() {
   const [formValue, setFormValue] = useState("");
   const [isOnSale, setOnSale] = useState(Boolean);
   const [idmovie, setIdMovie] = useState(0);
 
+  
   function muda(event: any) {
     setFormValue(event.target.value);
   }
 
-  function handleSubmit(event: any) {
+  async function handleSubmit(event: any) {
     event.preventDefault();
-
-    let moviesr = movieCatalogo.filter((movie) => movie.name === formValue);
-
-    if (moviesr.length !== 0) {
-      setIdMovie(moviesr[0].sala);
+    const movies:any[] = await  getMovieByName(formValue)
+    
+    //let moviesr =  movies.filter((movie:Catalogo) => movie.name === formValue);
+    console.log(movies)
+   if (movies.length) {
+      setIdMovie(movies[0].room);
 
       setOnSale(true);
     }

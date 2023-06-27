@@ -11,14 +11,4 @@ export class ComprarLugar{
         
         return this.lugares
     }
-
-    // comprar(id:number){
-    //     const chairIsAvaiable = this.lugares[id]
-    //     if(!chairIsAvaiable.isOcuped) return
-    //     this.lugares.forEach(element => {
-    //         element.isOcuped = false
-    //     });
-    //     this.lugares[id] =
-    // }
-    
 }

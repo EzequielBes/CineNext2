@@ -9,30 +9,33 @@ import { useMyContext } from "@/context/ticketContext";
 export default function Home() {
 
  
-  
+  const breakpoints = {
+    sm: '30em', // 480px
+    md: '48em', // 768px
+    lg: '62em', // 992px
+    xl: '80em', // 1280px
+    '2xl': '96em', // 1536px
+  }
   
 
   return (
     <>
       <Header />
       <Box bg={"black"}>
-        <Box width={"80%"} margin={"0 auto"} >
-          <Box height={"100vh"} display={"flex"}>
+        <Box width={{base: "100vw", md: '90vw', lg: '80vw'}} margin={"0 auto"} display={{base: 'flex', lg: "block"}} flexDir={{base: 'column', lg:"row"}}>
+          <Box height={{base:"full" ,lg:"100vh"}} display={"flex"}>
             <Box
-              justifyContent={"center"}
+              justifyContent={{base:"center", lg:"center"}}
               display={"flex"}
-              alignItems={"center"}
+              mt={{base:20 , lg: 0}}
+             
+              alignItems={{base:"flex-start"   ,lg:"center"}}
             >
               <Conteudo />
             </Box>
             
           </Box>
-          <Box height={"100vh"}>
-              <Img width={"100vw"} height={"100vh"} 
-                src="https://wallpaperaccess.com/full/3967998.jpg"
-                alt="Imagem de cinema"
-              />
-            </Box>
+         
         </Box>
       </Box>
     </>

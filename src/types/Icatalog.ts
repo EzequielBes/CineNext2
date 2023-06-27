@@ -1,7 +1,8 @@
 export interface Catalogo {
     name: string,
     description: string,
-    maxAge: number,
+    maxage: number,
     price: number,
-    sala: number
+    room: number,
+    imagepath: string
 }

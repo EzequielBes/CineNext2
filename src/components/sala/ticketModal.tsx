@@ -8,6 +8,7 @@ import {
     ModalCloseButton,
     useDisclosure,
     Button,
+    color,
   } from "@chakra-ui/react";
   import { SalaCinema } from "./Sala";
   import { useContext, useEffect } from "react";
@@ -29,10 +30,9 @@ import IngressoAnos80 from "./ticketMovie";
     useEffect(()=>{
         open()
     },[only === true])
+    
     return (
       <>
-       
-       
         <Modal isOpen={isOpen} onClose={onClose} size={'3xl'} >
           <ModalOverlay  />
           <ModalContent bgColor={'#49416D'} borderRadius={10}>  
