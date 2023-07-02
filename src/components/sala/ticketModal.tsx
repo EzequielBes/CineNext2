@@ -8,7 +8,7 @@ import {
     ModalCloseButton,
     useDisclosure,
     Button,
-    color,
+ 
   } from "@chakra-ui/react";
   import { SalaCinema } from "./Sala";
   import { useContext, useEffect } from "react";

@@ -38,7 +38,7 @@ export const TicketModal: React.FC<ITicketModal> = ({ing}) => {
                 backgroundColor: "orange"
             }} _hover={{
                 bg: "red.600"
-            }} onClick={onClose}>Close</Button>
+            }} onClick={onClose}>OK</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
